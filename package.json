@@ -20,5 +20,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kaelzhang/ambassador/issues"
+  },
+  "dependencies": {
+    "lockup": "~0.1.0"
   }
 }
