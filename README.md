@@ -11,14 +11,16 @@ Ambassador provides a way to communicate between node.js processes.
 Process A (pid: 14100)
 
 ```js
+// listen to signal 'watch'
 require('ambassador').on('watch', function(pid, data){
-		console.log('Signal "watch" from process[', pid, '] with data', data);
-	});
+	console.log('Signal "watch" from process[', pid, '] with data', data);
+});
 ```
 
 Process B (pid: 14102)
 
 ```js
+// send data to process 14100 (A)
 require('ambassador').send(14100, 'watch', {
 	abc: 1
 });
