@@ -73,4 +73,9 @@ The pid number from which process the signal has been sent.
 ##### data `mixed`
 
 The received data
+
+
+### ambassador.kill(pid)
+
+If the target process contains `ambassador`, this method will safely kill that process.
  
