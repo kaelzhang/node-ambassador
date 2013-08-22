@@ -18,10 +18,10 @@ Process A (pid: 14100)
 // Listen to signal 'watch'
 require('ambassador').on('watch', function(pid, data){
 	console.log('Signal "watch" from process[', pid, '] with data', data);
+});
 
 // So that process A will hang on.
 require('http').createServer(function(){}).listen(9876);
-});
 ```
 
 Process B (pid: 14102)
