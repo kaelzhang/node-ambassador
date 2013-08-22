@@ -52,6 +52,8 @@ The data to be sent
 
 ### ambassador.on(type, callback)
 
+##### Returns `ambassador`
+
 ##### type `String`
 
 ##### callback `function(pid, data)`
