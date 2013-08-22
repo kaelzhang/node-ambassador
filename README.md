@@ -8,6 +8,10 @@ Ambassador provides a way to communicate between node.js processes.
 	
 ## Usage
 
+First of all, `ambassador` is an [`EventEmitter`](http://nodejs.org/api/events.html#events_class_events_eventemitter).
+
+### Example
+
 Process A (pid: 14100)
 
 ```js
@@ -31,9 +35,11 @@ Then, process A will print:
 	Signal "watch" from process[ 14102 ] with data {abc: 1}
 	
 
-### ambassador.send(pid, type, data);
+## Methods
 
-Send a `type` signal to the process `pid` with data `data`
+### ambassador.send(pid, signal, data);
+
+Send a `signal` signal to the process `pid` with data `data`
 
 ##### Returns `ambassador`
 
@@ -41,20 +47,20 @@ Send a `type` signal to the process `pid` with data `data`
 
 The pid of the target process
 
-##### type `String`
+##### signal `String`
 
-Signal type
+Signal name
 
 ##### data `mixed`
 
 The data to be sent
 
 
-### ambassador.on(type, callback)
+### ambassador.on(signal, callback)
 
 ##### Returns `ambassador`
 
-##### type `String`
+##### signal `String`
 
 ##### callback `function(pid, data)`
 
