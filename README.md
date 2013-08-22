@@ -15,16 +15,19 @@ First of all, `ambassador` is an [`EventEmitter`](http://nodejs.org/api/events.h
 Process A (pid: 14100)
 
 ```js
-// listen to signal 'watch'
+// Listen to signal 'watch'
 require('ambassador').on('watch', function(pid, data){
 	console.log('Signal "watch" from process[', pid, '] with data', data);
+
+// So that process A will hang on.
+require('http').createServer(function(){}).listen(9876);
 });
 ```
 
 Process B (pid: 14102)
 
 ```js
-// send data to process 14100 (A)
+// Send data to process 14100 (A)
 require('ambassador').send(14100, 'watch', {
 	abc: 1
 });
