@@ -66,7 +66,7 @@ process.on(REAL_SIGNAL, function () {
         ambassador.emit(data.signal, data.from, data.data);
     }
 
-    fs.delete(data_file);
+    fs.remove(data_file);
     lockup.unlock(data_file + '.lock');
 });
 
