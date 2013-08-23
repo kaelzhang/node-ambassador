@@ -1,6 +1,6 @@
 {
   "name": "ambassador",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Ambassador provides a way to communicate between node.js processes.",
   "main": "index.js",
   "scripts": {
