@@ -14,7 +14,7 @@ var PID = process.pid;
 
 var USER_HOME = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 var ROOT = node_path.join(USER_HOME, '.node_ambassador');
-var REAL_SIGNAL = 'SIGHUP';
+var REAL_SIGNAL = 'SIGUSR1';
 
 if( !fs.exists( ROOT ) ){
     fs.mkdir(ROOT);
