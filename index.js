@@ -14,6 +14,9 @@ var PID = process.pid;
 
 var USER_HOME = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 var ROOT = node_path.join(USER_HOME, '.node_ambassador');
+
+// > The '`SIGUSR1`' and '`SIGUSR2`' signals are sent to a process to indicate user-defined conditions.
+// But '`SIGUSR1`' is already used by node.js for debugging
 var REAL_SIGNAL = 'SIGUSR2';
 
 if( !fs.exists( ROOT ) ){
@@ -31,24 +34,26 @@ function get_file_path (pid) {
 // @param {string} signal the signal name
 // @param {mixed} data
 ambassador.send = function (pid, signal, data) {
-    var data_file = get_file_path(pid);
+    if(pid){
+        var data_file = get_file_path(pid);
 
-    lockup.lock(data_file + '.lock', function (err) {
-        if(err){
-            return;
-        }
+        lockup.lock(data_file + '.lock', function (err) {
+            if(err){
+                return;
+            }
 
-        fs.write(
-            data_file, 
-            'module.exports = ' + code({
-                from: PID,
-                signal: signal,
-                data: data
-            })
-        );
+            fs.write(
+                data_file, 
+                'module.exports = ' + code({
+                    from: PID,
+                    signal: signal,
+                    data: data
+                })
+            );
 
-        process.kill(pid, REAL_SIGNAL);
-    });
+            process.kill(pid, REAL_SIGNAL);
+        });
+    }
 
     return ambassador;
 };
