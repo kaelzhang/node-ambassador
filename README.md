@@ -2,6 +2,11 @@
 
 Ambassador provides a way to communicate between node.js processes.
 
+With ambassador:
+
+- You could send JavaScript object(or other types of variables) between processes
+- You could safely kill a process which also contains ambassador.
+
 ## Installation
 
 	npm install ambassador --save
