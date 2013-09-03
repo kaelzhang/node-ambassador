@@ -51,7 +51,13 @@ ambassador.send = function (pid, signal, data) {
                 })
             );
 
-            process.kill(pid, REAL_SIGNAL);
+            // if the process doesn't exist, there will be a 'ESRCH' error thrown by the underlying system.
+            // `try` it, and release the lock
+            try {
+                process.kill(pid, REAL_SIGNAL);
+            } catch(e) {
+                lockup.unlock(data_file);
+            }
         });
     }
 
